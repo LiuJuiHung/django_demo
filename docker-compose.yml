@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql_test
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=test_DB
+      - MYSQL_USER=mmnlab
+      - MYSQL_PASSWORD=mmnlab456
+      - MYSQL_ROOT_PASSWORD=mmnlab123
+    healthcheck:
+      test: "/etc/init.d/mysql status"
+      timeout: 40s
+      retries: 10
+    volumes:
+      - dbdata1:/var/run/mysqld
+volumes:
+  dbdata1:
